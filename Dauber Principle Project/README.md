@@ -115,5 +115,122 @@ NB: This will be demonstrated at the later stage of the work.
 
 As part of maintaining proper case documentation, I created a dedicated folder on my desktop labeled **10001-BPD-CCD**, corresponding to the case number. This ensures that all data related to the case is organized and securely stored. Proper organization is crucial in a forensic investigation to facilitate easy access and traceability of evidence throughout the process.
 
+The **Chain of Custody Form** was securely saved in the case folder **10001-BPD-CCD**. Maintaining the integrity of the chain of custody is essential for ensuring that all evidence collected is handled properly and adheres to legal standards. This form will document every transfer of evidence, from its seizure to its analysis, ensuring that it is unaltered and admissible in court.
+
+## Extracting Evidence Files and Creating Hash Codes with FTK Imager
+
+In line with the **Daubert Standard**, the prosecution must demonstrate that the digital evidence obtained during the investigation was not altered in the course of the forensic process. To verify this, forensic investigators use advanced digital forensics tools to extract files and generate **hash codes** for the extracted evidence. These hash codes serve as unique identifiers for each file, allowing for comparison between the extracted files and those on the original drive image. If the hash codes match, it is evidence that the files have not been altered, thereby preserving their integrity.
+
+**FTK Imager**, a free digital forensic imaging and data preview tool developed by **AccessData** (now owned by **Exterro**), is instrumental in this process. FTK Imager is part of the larger **Forensic Toolkit (FTK)** suite, widely accepted in the **Digital Forensics and Incident Response (DFIR)** industry for its reliability and robust features. 
+
+### Features of FTK Imager
+
+- **Creation of Forensic Images**: FTK Imager allows for the creation of forensically sound disk images, preserving the state of the original data.
+- **File Previewing and Recovery**: Investigators can preview files and folders, and recover deleted files without altering the evidence.
+- **Mounting Images**: FTK Imager can mount disk images as read-only, allowing for safe examination without risk of modification.
+- **Hash Code Generation**: FTK Imager generates MD5 and SHA-1 hash values for files, which are crucial for maintaining evidence integrity.
+- **Command-Line Functionality**: In addition to its graphical interface, FTK Imager provides command-line options, allowing for automated and scripted processes.
+
+Given its reliability and widespread use, FTK Imager is considered a trusted tool for evidence collection and analysis within the forensic community. The fact that FTK Imager adheres to the strict standards required for admissible forensic evidence further solidifies its standing in both civil and criminal investigations.
+
+### Step-by-Step Process Using FTK Imager
+
+1. **Opening FTK Imager**: I initiated the forensic process by opening FTK Imager on my workstation.
+   
+2. **Creating a New Case**: I created a new case within the software, with the source of evidence specified as an **image file**. The image file was located on the local drive of the workstation under the directory:
+   - **PC > Local Disk (C:) > Daubert Standard Evidence > Image1**
+   
+3. **Selecting the Evidence Image**: The specific image file selected was named **Evidence_drive1.001**, which was acquired from the suspect's work laptop.
+
+4. **Evidence Tree Structure**: Once the image was loaded into FTK Imager, the software displayed the contents of the image as an **Evidence Tree**. This tree structure provides a hierarchical view of all the folders and files present on the drive image.
+
+5. **File and Folder Analysis**: Using the **Evidence Tree** in FTK Imager, I will thoroughly examine each folder and file, looking for potential evidence relevant to the case. This includes:
+   - Searching for **deleted files**
+   - Analyzing **metadata** 
+   - Identifying **encrypted or suspicious files**
+   - Investigating **file timestamps** and any indicators of tampering.
+  ![FTKFIles](images/1.FTKFiles.png)
+6. **Hash Code Generation**: I will generate hash codes (both **MD5** and **SHA-1**) for the files that I Idenfify to contain materials that could be of evidence in order to prosecute or exonorate the suspect.
+
+---
+## Examining Unallocated Space for Deleted Files
+
+After opening the **Evidence_drive1.001** image as described above, I proceeded to examine the contents of the **[Unallocated Space]** folder. In the **Windows NTFS file system**, deleted files are often retained in unallocated space. This area is particularly valuable for forensic investigations because it may contain deleted files that have not been permanently removed from the drive. Deleted files often provide key insights into the behavior and intent of suspects, making unallocated space a critical zone for investigation.
+
+In the case of **Beverly Gates**, the unallocated space on her hard drive appears to contain two notable files that warrant closer examination.
+
+![DeletedFiles](images/2.UnallocatedSpaceFolder.png)
+
+### File 1: 0002655 - Email Correspondence
+
+The first significant file discovered in the unallocated space is **0002655**, which appears to be an email. Upon inspecting the contents, the email was sent by **Beverly Gates** using her personal email address **bev.gates@outlook.com**. The email was addressed to **ddan2024@gmail.com**, and two individuals were cc'ed:
+- **Karen Jef** (Karen.jef@Intricate365.onmicrosoft.com)
+- **Mr. Harris Malone** (mr.harrris@Intricate365.onmicrosoft.com)
+
+#### Subject: 1:1 Meeting
+
+The content of the email revolves around setting up recurring meetings for the first six months of **ddan2024@gmail.com's** work at **Intricate Solution**. After a thorough review, there is no incriminating evidence associated with this email. The conversation appears to be routine work communication related to scheduling meetings, which falls within Beverly's normal work responsibilities. As a result, this file is noted but will not serve as critical evidence in the case.
+![Email1](images/3Mailexhange1.png)
+![Email2](images/4Mailexhange2.png)
+
+### File 2: 002665 - Incriminating Image
+
+The second file, **002665**, is much more significant. This file appears to be an **image** and contains potentially incriminating content. Beverly Gates is suspected of involvement in **drug trafficking**, and the image in question seems to be a list of **drug dealers**, detailing:
+- **What they sell**
+- **Their phone numbers**
+
+Given the nature of the investigation and the suspicions surrounding Beverly's involvement in illicit activities, this image could serve as a critical piece of evidence.
+
+### Hashing and Exporting the Evidence
+
+To preserve the integrity of this file and adhere to forensic best practices, I saved the image and immediately generated **hash values** (MD5 and SHA-1) for it. The hash values ensure that the file has not been altered since it was first extracted. The evidence was then exported to the **Evidence Folder**, and the **File Hash List** was generated and saved alongside it.
+![HashValue](images/5.002665hash.png)
+#### Exporting the File Hash List
+
+The **Export File Hash List** function in FTK Imager allows us to create a **human-readable file** that contains the following critical fields:
+- **MD5 Hash**: A cryptographic hash value that ensures data integrity.
+- **SHA-1 Hash**: Another cryptographic hash used to verify the file's integrity.
+- **Filename Location**: The location of the file within the imaged drive.
+
+By maintaining these records, I ensure that as long as the hash values for the file remain unchanged, it can be verified as authentic and untampered evidence, regardless of the forensic tool used (whether FTK Imager, **Autopsy**, or **Paraben's E3**).
+
+---
+
+## Examining the $RECYCLE.BIN Folder for Deleted Files
+
+The next folder I examined was the **$RECYCLE.BIN**. In **Windows systems**, the Recycle Bin holds files that users intend to delete. Although similar to unallocated space in that it can contain deleted files, the Recycle Bin differs in that its contents remain visible to the user and can be restored at any time. When users **empty the Recycle Bin**, the files are permanently deleted and moved to the **unallocated space**.
+
+### How Deleted Files are Handled in the Recycle Bin
+
+In **Windows 10**, when files are moved to the Recycle Bin, two separate files are created:
+- The first file begins with **$I**, which contains the **original location** of the deleted file.
+- The second file begins with **$R**, which is the **actual deleted file**.
+
+In older versions of Windows, such as Windows 7 (excluding **Windows Vista**), deleted files were renamed using the **DC#.ext** format, where `#` is an incrementally increasing integer (e.g., **DC1**, **DC2**) and **ext** represents the file's original extension (e.g., **.txt** or **.exe**). The original locations of all deleted files were stored in a single file titled **INFO2**.
+
+For forensic investigators, finding files in the Recycle Bin can be significant, as the act of deleting files might indicate that the computer owner intended to hide the contents. While deleting files is not necessarily criminal behavior, it becomes potentially suspicious when discovered during an investigation.
+
+### Investigating the Recycle Bin: S-1-5-21-4050736057-2770387751-2791612479-1001 Subfolder
+
+Inside the **$RECYCLE.BIN** folder, I navigated to a subfolder labeled **S-1-5-21-4050736057-2770387751-2791612479-1001**, where I identified two files that contain additional **incriminating evidence**.
+
+#### File 1: $IOUMU8V.txt
+
+The first file, **$IOUMU8V.txt**, contains the original file name and location of the deleted file, which is now stored as **$ROUMU8V.txt** in the Recycle Bin. The **$IOUMU8V.txt** file indicates that the original file was titled **MyRussianMafiaBuddies.txt** and was deleted from the 
+**Downloads folder**.
+![IFile](images/6.$i.png)
+#### File 2: $ROUMU8V.txt
+
+The second file, **$ROUMU8V.txt**, is the actual deleted file. As its name suggests, **MyRussianMafiaBuddies.txt** appears to contain a list of **Russian names and addresses**. Given that **Beverly Gates** is under investigation for **drug trafficking**, the contents of this file appear highly suspicious and relevant to the investigation. The name alone suggests possible connections to criminal networks, and the file will need to be analyzed thoroughly.
+![RFile](images/7$R.png)
+
+### Exporting and Hashing the Evidence
+
+Since these two files are related, I selected both **$IOUMU8V.txt** and **$ROUMU8V.txt** and exported them together to the **Evidence Folder**. I then created their **hash values** (MD5 and SHA-1) to ensure the integrity of the files during the investigation. The **hash values** for the two files were saved in a file titled **RecycleBinEvidence_hash**.
+![Evidence](images/8.RecycleEvidenceand.png)
+
+---
+
+The contents of the **$RECYCLE.BIN** have provided valuable insight and crucial evidence in this case. The next steps in the investigation will involve further analysis of the files to establish links between **Beverly Gates** and any criminal activity, specifically her suspected involvement with **drug trafficking**.
 
 
