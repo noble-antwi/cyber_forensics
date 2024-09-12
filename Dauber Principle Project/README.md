@@ -234,3 +234,205 @@ Since these two files are related, I selected both **$IOUMU8V.txt** and **$ROUMU
 The contents of the **$RECYCLE.BIN** have provided valuable insight and crucial evidence in this case. The next steps in the investigation will involve further analysis of the files to establish links between **Beverly Gates** and any criminal activity, specifically her suspected involvement with **drug trafficking**.
 
 
+## Searching for Copies of Deleted Files on Beverly Gates' Hard Drive
+
+In my ongoing investigation, the next crucial step is to locate copies of the deleted files that may still exist on **Beverly Gates' hard drive**. Since **FTK Imager** lacks a search function, I’m carrying this out manually by exploring various folders. The disk image doesn’t contain much data, making the process relatively manageable, though in a real-world scenario, it would take much longer.
+
+I’ve already identified two critical files during my previous review:
+1. **MyRussianMafiaBuddies.txt** – Found in the **Recycle Bin**.
+2. **Nice Guys.png** – Discovered in the **Unallocated Space**.
+
+I began by focusing on the **Temp Folder**, which stood out due to its unusual name compared to the more typical folders like **CVs, Downloads, Emails, Office Photos, and System Volume Information**.
+
+### Navigating to the Temp Folder
+
+Upon opening the **Temp Folder** in the **File List** pane, there they were—**MyRussianMafiaBuddies.txt** and an image file titled **Nice Guys.png**. This was a huge find, and things were starting to fall into place.
+
+![Temp](images/9.Temp.png)
+### File Review and Verification
+
+After reviewing each file in detail, I was able to confirm that they **exactly match** the files I had found earlier in the **Unallocated Space** and **Recycle Bin**.
+
+- **Nice Guys.png** matches the file discovered in the **Unallocated Space**.
+![NiceGuys](images/11Niceguys.png)
+- **MyRussianMafiaBuddies.txt** matches the file found in the **Recycle Bin**.
+![RUssianBuddies](images/10RUsssina.png)
+### Exporting Files as Evidence
+
+I proceeded with exporting both files to my **Evidence Folder**, ensuring that they are preserved for further analysis and legal proceedings. To maintain the integrity of the files, I generated their corresponding hash values and saved them as follows:
+
+- **MyRussianMafiaBuddies.txt** was exported, and its hash file was saved as **MyRussianMafiaBuddies_hash**.
+- **Nice Guys.png** was also exported, and its hash file was saved as **NiceGuys_hash**.
+
+By doing this, I ensured that these crucial pieces of evidence are not tampered with and remain intact as I continue to build the case.
+
+ ## Images of Hashes Generated for the Evidence Obtained
+1. **Recycle Bin Evidence Hash**
+![RecycleBunHash](images/12RecyceleBishHash.png)
+```hash
+MD5,SHA1,FileNames
+"a3daacbbf68447875cc3fef257cf727","373d7b55e3c16602ee4376dc35ca1ea94f7107e96","Evidence_drive1.001\NONAME [NTFS]\[root]\$RECYCLE.BIN\S-1-5-21-4050736057-2770387751-2791612479-1001\$IOUMU8V.txt"
+"f6acd93cfb9cdcc901f809d6349472f1","11a15ebd2ffaa8021bded233c3a54744604bc3","Evidence_drive1.001\NONAME [NTFS]\[root]\$RECYCLE.BIN\S-1-5-21-4050736057-2770387751-2791612479-1001\$ROUMU8V.txt"
+
+```
+
+2. **Nice Guys Has File**
+ ![Nice Guys Hash Content](<images/13NiceGuys hASH.png>)
+ ```hash
+ MD5,SHA1,FileNames
+"0067f03ada8c4d43245f0e9ca663bb36","d3419ee4b32bacc22452d3a7575d544d99a15a78","Evidence_drive1.001\NONAME [NTFS]\[root]\Temp Folder\Nice guys.PNG"
+
+ 
+ ```
+
+ 3. **My Russian Biddies Evidence Hash**
+![RUssianBuddiesHash](images/14MyRussianBuddiesHash.png)
+
+ ```hash
+MD5,SHA1,FileNames
+"f6acd93cfb9cdc901f809d6349472f1","11a15ebd2ffaa8021bdedd233c3a547446041bc3","Evidence_drive1.001\NONAME [NTFS]\[root]\Temp Folder\MyRussianMafiaBuddies.txt"
+
+
+ 
+ ```
+4. **File 002665 Evidence Hash** 
+![002665Hash](images/15File002665Hash.png)
+ ```hash
+MD5, SHA1, FileNames
+
+"a2f4e5c365c0413bbf14cfce7ba48890", "00fa108cd5dada2f64340961c240a24065b6e9c6", "Evidence_drive1.001 NONAME [NTFS][unallocated space]\0002665"
+
+
+ 
+ ```
+
+---
+## Verifying Hash Codes with Paraben’s E3
+
+In this part of the investigation, I’m shifting gears to another powerful forensic tool—**Paraben's Electronic Evidence Examiner (E3)**—to verify the integrity of the evidence I previously gathered. Hash verification is an essential step in digital forensics to ensure that the files I acquired haven’t been altered or tampered with between different stages of the investigation.
+
+### Why Use E3 for Hash Verification?
+
+E3 is a versatile tool that’s widely used in real-world forensic investigations. It offers a comprehensive platform for handling various types of evidence, from **smartphone data** and **cloud storage** to **IoT devices** and **email analysis**. The flexibility and power of E3 make it ideal for forensic analysts like myself who need to process complex datasets while ensuring the integrity of the evidence collected.
+
+### The Importance of Hash Verification
+
+In real investigations, it’s common for the **first responder**—who initially acquires the evidence—and the **forensic analyst**—who later processes it—to be different people. Weeks, or even months, may pass between the initial acquisition and the investigation. For example, the first responder may use **FTK Imager** to create forensic images and generate hash values during acquisition. Later, when the forensic analyst works on the evidence, they may use a different tool such as **E3** for the analysis.
+
+This is where hash verification becomes critical. I need to ensure that the **MD5 hashes** generated during the initial acquisition match the ones I generate now with **E3**. This guarantees that the files remain unchanged and that the chain of custody has not been broken.
+
+### Verifying Hashes in E3: Noble Worlanyo Antwi BG Case File
+
+After launching **Paraben's E3 application**, I began by creating a new case under the name: **Noble Worlanyo Antwi BG Case File**. I then loaded the **Evidence Image** previously acquired using FTK Imager: **Evidence_drive1.001**. This step displayed all folders and subfolders within the evidence image, allowing for further investigation.
+![E3Page](images/16E3.png)
+
+#### Navigating the Temp Folder
+
+To maintain consistency with the analysis done in **FTK Imager**, I navigated to the **Temp Folder** within the evidence image. Previously, in FTK Imager, this folder contained two key files of interest: 
+- **MyRussianMafiaBuddies.txt**, which I initially recovered from the **Recycle Bin**, 
+- **Nice Guys.png**, which I found in **Unallocated Space**.
+
+These files were flagged for further examination due to their relevance to the investigation. 
+
+#### Running Content Analysis
+
+Right-clicking the **Temp Folder**, I initiated a **Content Analysis** in E3. This analysis provided detailed insight into the folder's contents, including generating hash values to compare with the hashes obtained earlier in **FTK Imager**.
+
+Below is a screenshot showing the Content Analyzer running with its **default settings**.
+![Content Analysis](images/17E3ContentAnalysis.png)
+![FullAnalysisofContent](images/18E3ContentAnalyzerDefaultRunning.png)
+
+#### Retrieving Hashes for Files
+
+After completing the content analysis successfully (as shown in the attached completion image), I moved on to verify the **MD5** and **SHA-1** hashes for the specific files.
+![ContentAnalysisCompleted](images/19ContentAnalysisCompleted.png)
+
+1. **For MyRussianMafiaBuddies.txt**:
+   - In the **center pane**, I selected the file, and the **Properties pane** displayed the file's metadata, including its hash values.
+   - The **MD5** value generated in **E3** was:  
+     **CDC901F809D6349472F1**
+     ![MD5E3Russian](images/20E3RussianBuddiesSHaandMD5.png)
+   
+2. **For Nice Guys.png**:
+   - I repeated the process, selecting **Nice Guys.png** and reviewing the properties.
+   - The **MD5** value generated in **E3** was:  
+     **0067F03ADA8C4D43245F0E9CA663BB36**
+     ![NIceguysE3MD5](images/21E3NiceGuysSHAMD5.png)
+
+#### Comparing Hash Values
+
+After obtaining the hash values from **E3**, I compared them with the ones generated earlier in **FTK Imager**. Notably, the only difference between the two sets of values was the **capitalization**—E3 produced hashes in uppercase, whereas FTK Imager left them in lowercase. Aside from this, the actual hash values remained identical, confirming the integrity of the files.
+
+- **FTK Imager**:  
+   - **MyRussianMafiaBuddies.txt**: `cdc901f809d6349472f1`  
+   - **Nice Guys.png**: `0067f03ada8c4d43245f0e9ca663bb36`
+
+- **E3**:  
+   - **MyRussianMafiaBuddies.txt**: **CDC901F809D6349472F1**  
+   - **Nice Guys.png**: **0067F03ADA8C4D43245F0E9CA663BB36**
+
+#### Conclusion
+
+Based on the comparison of the hash values, I can confidently conclude that the files have remained **unaltered** throughout the forensic investigation process. Despite the difference in capitalization between the tools, the actual MD5 hash values are identical, ensuring the evidence's integrity. This consistency confirms that the files in question are authentic and can be relied upon in further forensic analysis.
+
+
+## Further Analysis of the Email Folder in FTK Imager
+
+## Case Overview
+As part of the ongoing investigation into **Beverly Gates**, I conducted a more in-depth search of the **Emails** folder within her seized drive image. The objective was to uncover furhter incriminating communications, particularly involving coded language for illegal activities. My supervisor suggested that Beverly may have exchanged emails with her criminal partners, so I focused on analyzing these communications.
+
+Upon reviewing the email files in this folder, I identified one suspicious email titled **"Re: Stuff Purchase Request."**
+
+## Content of Suspicious Email
+
+Upon opening the email, I found a conversation between **Mrs. Maxinoff** and **Elliote Jeffrey**. The conversation contained coded language referring to "stardust," which, based on my understanding of the case, is likely a euphemism for illegal substances (possibly drugs).
+
+Jeffrey was attempting to purchase "stardust," and Mrs. Maxinoff appeared to be facilitating the deal. This email exchange provided further evidence of Beverly Gates' involvement in illegal activities.
+
+---
+
+## Evidence Extraction and Hash Generation
+
+To maintain the integrity of the evidence, I followed standard forensic procedures and exported the suspicious email for further examination. The email was saved with the following details:
+
+- **File Name**: `Re_ Staff purchase request.eml`
+- **File Location**: Evidence Folder
+
+A corresponding hash file, titled **StardustEmailConversation_hash**, was also created and saved in the evidence folder. This hash code can be used for verification purposes in future analysis and to demonstrate that the file has not been altered during the investigation.
+Kindly find the video and image attachement below for evidence of work done.
+![StardustImage](images/23StardustconetImage.png)
+
+<video controls src="vid/1StardustEmailContent.mp4" title="Stardust Email Chain Evidence"></video>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
