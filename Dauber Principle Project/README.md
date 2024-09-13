@@ -498,6 +498,13 @@ Upon closer examination of the suspicious email and other relevant files cross-c
 Thus, based on the digital forensics conducted, there is conclusive evidence to link **Beverly** to drug trafficking, supporting the initial hypothesis of her involvement.
 
 
+## Disclaimer
+
+It is important to note that the scenario presented in this lab report is a simulated exercise based on a hypothetical case provided in the lab titled **"Applying the Daubert Standard to Forensic Evidence"** from the book *Digital Forensics, Investigation, and Response, 4th Edition* by Chuck Easttom. The details, including the investigation, findings, and conclusions, are constructed for educational purposes and do not reflect real-world events or actual individuals. 
+
+The objective of this lab was to apply forensic methodologies and tools in a controlled environment to understand and practice the principles of digital forensics and evidence integrity as per the Daubert standard. All evidence, scenarios, and conclusions discussed in this report are fictional and are intended to demonstrate the application of forensic techniques rather than to assert factual claims about real-world entities.
+
+This disclaimer serves to clarify that the content of this report is based on a structured educational exercise and is not intended as an assertion of actual events or personal intellectual property.
 
 
 
