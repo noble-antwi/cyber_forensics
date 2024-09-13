@@ -5,8 +5,18 @@
 
 ## Company (Victim):
 **Intricate Solutions, Inc**
+==========================================================
+# Executive Summary
 
----
+In this digital forensic investigation, a drive image labeled **Evidence_drive1.001** was analyzed, suspected to contain incriminating evidence related to a drug trafficking case. The drive was seized from the suspect's system during an operation targeting a drug trafficking ring. The purpose of the investigation was to extract relevant evidence from the drive, validate the integrity of the data, and ensure that no tampering had occurred during the handling of the digital evidence.
+
+Using industry-standard forensic tools, such as **FTK Imager** and **Autopsy**, I focused on extracting and verifying email correspondence, file metadata, and other documents that might indicate the suspect's involvement in illegal activities. A suspicious email file, **Re_Stuff purchase request.eml**, was identified and analyzed as potential evidence. The email was reviewed using hash code verification methods, ensuring that the data had not been altered since the time of its collection.
+
+Verification of hash values, such as **MD5** and **SHA1**, for both the original drive image and the suspicious email revealed that no changes were made during the forensic process. This confirmed the integrity of the evidence. The hash codes were consistent across both **FTK Imager** and **Autopsy** tools, further solidifying the reliability of the extracted data.
+
+Key pieces of evidence uncovered during this analysis, such as email communications and metadata, could play a crucial role in linking the suspect to the trafficking network. The investigation successfully preserved the integrity of the digital evidence, making it ready for presentation in potential court proceedings.
+
+
 
 ## Case Summary:
 Beverly Gates, the HR Manager for Intricate Solutions, Inc., has come under suspicion for involvement in a sophisticated drug trafficking operation. The company’s management reported the suspicions to the Boston Police Department after uncovering potential links between Gates and criminal activity. Due to the serious nature of the accusation, the Boston Police Department assigned Officer Brendan O’Rourke to lead the investigation.
@@ -404,13 +414,82 @@ Kindly find the video and image attachement below for evidence of work done.
 
 <video controls src="vid/1StardustEmailContent.mp4" title="Stardust Email Chain Evidence"></video>
 
+## Analysis of Email Manipulation and Hash Validation
+
+During the investigation of the evidence image, I identified a suspicious email titled **"Re: Stuff Purchase Request"** that raised concerns regarding potential illegal activities. The email, exchanged between Mrs. Maxinoff and Elliot Jeffrey, contained coded language such as references to "stardust," which I strongly suspected to be linked to illicit transactions.
+
+To delve deeper into the investigation, I opted to manipulate the content of this email file to demonstrate how modifications to digital evidence can be detected. Using Notepad, I carefully edited portions of the email, removing specific content to create a subtle alteration. Once these changes were made, I re-imported the entire evidence folder, **10001-BPD-CCD**, back into FTK Imager for analysis.
+![EvidenceFolder](images/24EvidenceFolderReimportaion.png)
+
+Upon re-examining the edited email, I generated new hash values to compare against the original. The results were as expected: the alterations caused a complete deviation in the hash codes. 
+
+The **original email** file produced the following hash values:
+- **MD5**: `57581DE091C9C9C01F259107F2BC2437`
+- **SHA1**: `3B8DE9306DEBC9424B09FFC640C321DDBB9B096E`
+
+In contrast, the **edited email** resulted in:
+- **MD5**: `DDAC9EA4FBA81B50E39E366531873F2D`
+- **SHA1**: `264B75F6F7CA08109DE6E7856A4D544FE8519D36`
+
+The distinct differences in the MD5 and SHA1 values confirm that even minor modifications to the evidence file altered its cryptographic hash, thus demonstrating the efficacy of hash values in preserving the integrity of digital evidence. This variance underscores the importance of using hashing as a robust method to ensure that evidence remains unaltered throughout the investigative process.
+
+## Verifying Hash Codes with Autopsy
+
+In the next phase of the investigation, I leveraged **Autopsy**, a comprehensive digital forensics tool designed for analyzing drive images. Autopsy serves as a graphical interface for **The Sleuth Kit**, an open-source suite of command-line utilities widely used in digital forensics. What makes Autopsy particularly versatile is its plug-in architecture, allowing for extended functionality with custom or community-developed modules.
+![Autopsy](images/25AutopsyInterface.png)
+
+Given its ease of use and its extensive analytical capabilities, Autopsy was an ideal choice to verify the hash values produced in the initial stages of the investigation using FTK Imager.
+
+I proceeded by creating a new case titled **BG_Evidence**, which was saved in the **Documents** directory of the C drive. For the image analysis, I employed the same drive image used in FTK Imager, **Evidence_drive1.001**, and retained the default settings throughout the import process.
+
+Upon successful data upload, I navigated to the **Email** folder under the **Evidence Drive** in the data source tree view. 
+![EmailFOlder](images/26AutopsyEmailFolder.png)
+
+The email in question, **Re_Stuff purchase request.eml**, was then opened, and I selected the **File Metadata** tab to review its properties. Here, the **MD5 hash** for the file was displayed as:
+
+- **MD5**: `57581DE091C9C9C01F259107F2BC2437`
+
+This hash value was consistent with the one previously generated in FTK Imager. Comparing the results from both tools—FTK Imager and Autopsy—I can confidently conclude that the MD5 hash value for the email file remained identical across both platforms. This validation reinforces the integrity of the digital evidence and the reliability of cryptographic hashing for ensuring that the data remains unaltered.
+![AutopsyMD5](images/27AutopsyMD5Stardust.png)
+
+### Conclusion
+
+The consistency of the **MD5 hash value** across both FTK Imager and Autopsy, `57581DE091C9C9C01F259107F2BC2437`, confirms that no alterations have been made to the **Re_Stuff purchase request.eml** file during the analysis process. This further strengthens the confidence in the forensic methodologies employed, as both tools provided identical results, verifying the authenticity and integrity of the digital evidence. The use of hashing proves crucial in maintaining the chain of custody, ensuring that the data examined during the investigation is the same as when it was initially collected.
+
+## Hash Code Verification with FTK Imager Command Line
+
+In continuing the forensic analysis, I decided to delve deeper into command-line operations with **FTK Imager**. Command-line tools provide forensic professionals with more flexibility and automation capabilities during investigations. To extend my toolkit and enhance my skills, I researched the command-line version of **FTK Imager** to verify the integrity of the drive image, **Evidence_drive1.001**, which had been at the center of this investigation.
+
+To enable command-line usage, I first copied the installation directory of FTK Imager (`C:\Program Files\AccessData\FTK Imager\cmd\`) and added it to the system's PATH environment variable. This allowed me to access FTK Imager commands from any location in the command prompt.
+![EnvironmentVairable](images/28EnvironmentVaribalesSettings.png)
+
+After some research, I identified the appropriate command to generate both **SHA1** and **MD5** hash codes for the image. The command used was:
+
+```bash
+ftkimager --verify Evidence_drive1.001
+```
+
+![CommandLineTool](images/29ImageHasMatches.png)
 
 
 
 
 
 
+========================================================================
+# Executive Summary
 
+This forensic investigation focused on analyzing a digital image file associated with an alleged drug trafficking case. The primary goal was to assess the integrity of the evidence collected, ensure that no alterations had been made, and verify the file's authenticity. Using industry-standard forensic tools such as **FTK Imager** and **Autopsy**, the investigation included the extraction of key evidence, hash code verification for files suspected of containing illicit activity, and validation of the integrity of the original drive image. The process successfully demonstrated that the evidence remained intact throughout the investigation, thus preserving the chain of custody and ensuring reliable results for further legal examination.
+
+---
+
+# Forensic Investigation Report
+
+### Investigation Overview
+
+This investigation centered on a forensic analysis of a seized drive image, **Evidence_drive1.001**, believed to contain incriminating evidence related to drug trafficking. The image was examined using various forensic tools, such as **FTK Imager** and **Autopsy**, to extract, verify, and preserve critical evidence. During the investigation, particular emphasis was placed on verifying hash codes to confirm the integrity of files extracted from the drive.
+
+---
 
 
 
