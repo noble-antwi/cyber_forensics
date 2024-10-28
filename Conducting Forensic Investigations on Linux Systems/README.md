@@ -3,13 +3,11 @@
 
 ## Introduction
 
-Linux is a free, open-source operating system, making its source code accessible to anyone interested in modifying, repackaging, or distributing it. Despite being freely available, Linux is a powerful, high-performance system widely used, particularly for infrastructure and web servers. For forensic investigators, this means Linux-based evidence is frequently encountered when examining servers and network infrastructure, just as Windows-based evidence is commonly seen on desktops and laptops. 
+Linux is a free, open-source operating system, making its source code accessible to anyone interested in modifying, repackaging, or distributing it. Despite being freely available, Linux is a powerful, high-performance system widely used, particularly for infrastructure and web servers. For forensic investigators, this means Linux-based evidence is frequently encountered when examining servers and network infrastructure, just as Windows-based evidence is commonly seen on desktops and laptops.
 
 Notably, Linux is also the foundation of Android, the most prevalent mobile operating system globally, holding over 72% of the market share. While mobile forensics lies beyond this lab’s scope, many skills practiced here can be extended to Android devices.
 
 An essential component of Linux is the interactive interface, known as the shell. The shell interprets commands from the keyboard and relays them to the operating system. Linux offers two main shells: a graphical user interface (GUI) and a command-line interface (CLI). Though users familiar with Windows or macOS may find the GUI approachable, the command-line interface offers unmatched flexibility and control, crucial for forensic analysis on a Linux system.
-
-
 
 Here’s a personalized, direct format for these instructions:
 
@@ -23,7 +21,7 @@ As a junior forensic investigator at a consulting firm specializing in cybercrim
 
 Harper and Associates is a prominent financial investment firm managing billions of dollars in assets. Recently, their security team detected suspicious activity on one of their critical Linux servers. They suspect an intruder attempted unauthorized access using the credentials of a legitimate user. To address this incident, Harper and Associates has enlisted our firm to gather evidence of any such intrusion.
 
-For this investigation, I have been provided with a disk image of the compromised Linux system, captured after the suspected intrusion. 
+For this investigation, I have been provided with a disk image of the compromised Linux system, captured after the suspected intrusion.
 
 In the following steps, I will use Paraben’s E3 to import the Linux drive image and examine the system’s log files to identify login attempts and uncover any indicators of unauthorized access.
 
@@ -33,16 +31,18 @@ After launching Paraben’s E3, I created a new case titled **NobleAntwi Linux F
 
 1. **Drive Image Import**:  
    I navigated to the provided Ubuntu 20.04 disk image file and imported it into the newly created case. Once imported, I located the critical directory path for log analysis:
-   
+
    ``` bash
    Linux Forensics\Ubuntu20.04\Partition Parser\Partition1\EXT4\Root\var\log
    ```
+
 ![suthlog](images/001LoadingUbuntuImageFile.png)
+
 2. **Accessing the auth.log File**:  
    Within the `/var/log` directory, I identified and selected the **auth.log** file in the Data Viewer pane of E3. This file, known as the authorization log, records activity related to system authorization processes. Specifically, it logs password entries (both successful and failed), usage of the `sudo` command, remote login attempts, and more. For forensic purposes, the **auth.log** is essential for investigating recent login attempts, unauthorized access attempts, and related activities on the system.
 
 3. **Document View Inspection**:  
-   Upon opening the auth.log file in the Document Viewer, I observed that the log spanned a substantial length of 26 pages. Given the volume of data, manually reading through the file would be inefficient and prone to oversight. 
+   Upon opening the auth.log file in the Document Viewer, I observed that the log spanned a substantial length of 26 pages. Given the volume of data, manually reading through the file would be inefficient and prone to oversight.
    ![Document View](images/002AUthLogEntries.png)
 
 4. **Utilizing Advanced Search for Login Attempts**:  
@@ -55,24 +55,24 @@ After launching Paraben’s E3, I created a new case titled **NobleAntwi Linux F
 6. **Reviewing Search Results**:  
    The search yielded **22 Hits in 1 Place**, with **22 Hits – Binary Data headers**. I then proceeded to examine each individual result, drilling down into each instance to locate specific failed login attempts recorded in the **auth.log**.
 ![result](images/004SearchResults.png)
+
 7. **Identifying Key Findings – Failed Login Attempts**:  
    Among the results, I identified multiple unsuccessful login attempts that fell outside of Harper and Associates’ typical work hours (7:00 PM to 9:00 AM). This unusual activity occurred on June 11, indicating a high likelihood of malicious intent, particularly as legitimate users rarely attempt access with invalid credentials during off-hours.  
-   
-   Below is a breakdown of the unauthorized login activity, showing details for each user involved.
 
-   ### Unauthorized Login Activity Summary
+### Unauthorized Login Activity Summary
 
    **User**: Noel  
-   - **Ports**: 14444 and 3521  
-   - **Source IP**: 192.168.78.1  
-   - **Number of Attempts**: A total of 12 attempts were recorded for Noel, with 6 attempts on port 14444 and another 6 on port 3521.  
-   - **Date/Time Range of Attempts**: June 11, between 00:57:08 and 05:06:50  
+
+- **Ports**: 14444 and 3521  
+- **Source IP**: 192.168.78.1  
+- **Number of Attempts**: A total of 12 attempts were recorded for Noel, with 6 attempts on port 14444 and another 6 on port 3521.  
+- **Date/Time Range of Attempts**: June 11, between 00:57:08 and 05:06:50  
 
    **User**: Dominic  
-   - **Ports**: 4663 and 3417  
-   - **Source IP**: 192.168.78.1  
-   - **Number of Attempts**: A total of 8 attempts were recorded for Dominic, with 5 attempts on port 4663 and 3 attempts on port 3417.  
-   - **Date/Time Range of Attempts**: June 11, between 05:07:29 and 05:38:32  
+- **Ports**: 4663 and 3417  
+- **Source IP**: 192.168.78.1  
+- **Number of Attempts**: A total of 8 attempts were recorded for Dominic, with 5 attempts on port 4663 and 3 attempts on port 3417.  
+- **Date/Time Range of Attempts**: June 11, between 05:07:29 and 05:38:32  
 
    Both users’ accounts showed a pattern of failed access attempts originating from the same IP address and within a suspicious timeframe, supporting the hypothesis of malicious activity on the server.
 
@@ -94,13 +94,13 @@ Here's a detailed and professional rewrite of this stage of your investigation, 
 
 ## Identification of Software Installations on a Linux Drive Image
 
-Having uncovered evidence that a legitimate user account, specifically that of Dominic, made repeated unsuccessful login attempts outside of regular working hours—ultimately culminating in a successful login—it became imperative to explore the nature of the account compromise. Given the timing of these events on June 11, the possibility that the legitimate user was merely attempting to access the production file server in the early hours of the morning, perhaps after a restless night, appears less plausible. Instead, it raises concerns that an intruder may have exploited a compromised user account. 
+Having uncovered evidence that a legitimate user account, specifically that of Dominic, made repeated unsuccessful login attempts outside of regular working hours—ultimately culminating in a successful login—it became imperative to explore the nature of the account compromise. Given the timing of these events on June 11, the possibility that the legitimate user was merely attempting to access the production file server in the early hours of the morning, perhaps after a restless night, appears less plausible. Instead, it raises concerns that an intruder may have exploited a compromised user account.
 
 To advance this investigation, I focused on identifying any anomalies that could shed light on how the intruder obtained the valid user credentials initially. This would provide crucial context for understanding the breach and its implications.
 
 ### Searching for Software Installations
 
-To further my inquiry, I utilized the advanced search functionality within E3 to search for instances of the **apt-get install** command within the **auth.log** file. 
+To further my inquiry, I utilized the advanced search functionality within E3 to search for instances of the **apt-get install** command within the **auth.log** file.
 
 - **Understanding apt-get**:  
   The **Advanced Package Tool (APT)** is a widely used software management system in Linux distributions that simplifies the process of installing and removing software packages. The **apt-get install** command specifically allows users to install new packages onto the Linux system. As a forensic investigator, searching for records of this command in the auth.log is a strategic approach, as it can reveal what software has been recently installed, providing insights into potential unauthorized modifications to the system.
@@ -123,7 +123,6 @@ Notably, the **apt-get install** command was executed using the **sudo** command
 ### Conclusion and Next Steps
 
 At this juncture, the evidence points toward a sophisticated attack vector involving the compromise of a legitimate user account and subsequent installation of keylogging software. This alarming discovery necessitates a deeper investigation into how the intruder acquired these credentials in the first place and whether any additional unauthorized actions were taken on the system.
-
 
 ## Identification of External Drive Attachments on a Linux Drive Image
 
@@ -219,9 +218,11 @@ The forensic investigation of the Linux server at Harper and Associates has unco
 
 6. **Disk Imaging Activity**:
    - Evidence of a disk imaging command was found:
+
      ```bash
      /usr/bin/dd if=/dev/sda of=/media/dominic/data/Ubuntu20.04.image bs=4096 status=progress
      ```
+
    - This command created a complete image of the server's hard drive, potentially facilitating data exfiltration.
 
 ### Conclusion
@@ -256,6 +257,7 @@ This incident underscores the critical importance of maintaining robust cybersec
 
 ---
 ---
+
 ## Key Forensic Information Sources in Linux Systems
 
 Forensic investigators can uncover valuable evidence by examining specific directories and utilizing certain commands in Linux systems. Here's an overview of important locations and commands:
