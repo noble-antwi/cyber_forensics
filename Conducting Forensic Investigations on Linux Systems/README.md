@@ -9,10 +9,6 @@ Notably, Linux is also the foundation of Android, the most prevalent mobile oper
 
 An essential component of Linux is the interactive interface, known as the shell. The shell interprets commands from the keyboard and relays them to the operating system. Linux offers two main shells: a graphical user interface (GUI) and a command-line interface (CLI). Though users familiar with Windows or macOS may find the GUI approachable, the command-line interface offers unmatched flexibility and control, crucial for forensic analysis on a Linux system.
 
-Here’s a personalized, direct format for these instructions:
-
----
-
 ## Identify Login Attempts on a Linux Drive Image
 
 ### Scenario
@@ -88,9 +84,6 @@ Following the analysis of failed login attempts, I proceeded to investigate whet
 
 ![Dominic](images/007DomincSearch.png)
 ![Domnic LatLogin](images/008LastLoginFoDominic.png)
-Here's a detailed and professional rewrite of this stage of your investigation, with added context for clarity and depth:
-
----
 
 ## Identification of Software Installations on a Linux Drive Image
 
